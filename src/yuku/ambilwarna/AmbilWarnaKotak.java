@@ -25,6 +25,11 @@ public class AmbilWarnaKotak extends View {
 
 	@Override protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+		// Fix ComposeShader on Android Honeycomb and before
+		// See: http://stackoverflow.com/a/12446712/1420186
+	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+	            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+	        }
 		if (paint == null) {
 			paint = new Paint();
 			luar = new LinearGradient(0.f, 0.f, 0.f, this.getMeasuredHeight(), 0xffffffff, 0xff000000, TileMode.CLAMP);
